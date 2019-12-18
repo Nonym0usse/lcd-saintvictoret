@@ -1,0 +1,89 @@
+.image{
+  height: 100vh;
+  background-image: url("../../assets/img/fake-coworking.jpg");
+  background-position: center;
+  background-size: cover;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.gradient{
+  z-index: 2;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  height: 450px;
+  background: linear-gradient(#1B1B1B, transparent);
+}
+
+.title-bureau{
+  font-weight: 400;
+  font-style: italic;
+  font-size: 45px;
+  color: #FFF;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 75px;
+  left: 0px;
+  z-index: 2;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+
+.top-price {
+  display: block;
+  margin: 0 auto;
+  font-family: 'PT Serif';
+  font-weight: 400;
+  font-style: italic;
+  font-size: 30px;
+  color: #fff;
+  background-color: #F6C931;
+  width: 200px;
+  text-align: center;
+  position: relative;
+  top: 135px;
+  z-index: 2;
+  letter-spacing: -0.01em;
+}
+
+.descriptif{
+  height: 75vh;
+}
+
+.reservation{
+  background-color: #F6C931;
+  height: 75vh;
+}
+
+.reservation h3{
+  text-align: center;
+  color: #fff;
+  padding-top: 30px;
+}
+
+.color-box{
+  background-color: #1B1B1B;
+  height: 75vh;
+}
+
+.color-box h3{
+  text-align: center;
+  color: #fff;
+  padding-top: 30px;
+}
+
+.text-for-desk{
+  color: #FFFFFF;
+  padding-top: 40px;
+  text-align: center;
+}
+
+.list-services{
+  color: #FFFFFF;
+}
+
+.list-services li{
+  padding: 10px;
+}

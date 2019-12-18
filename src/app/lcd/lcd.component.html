@@ -1,0 +1,37 @@
+<div class="container-fluid image">
+  <div class="gradient">
+    <h1 class="title-bureau">TEST</h1>
+    <span class="top-price">67€/mois</span>
+  </div>
+</div>
+<div class="container-fluid descriptif">
+  <div class="row">
+    <div class="col-md-6 reservation">
+      <h3>Réservez dès maintenant !</h3>
+      <div class="container">
+        <mat-form-field>
+          <input matInput
+                 placeholder="Choisir une date..."
+                 [satDatepicker]="picker"
+                 [value]="dateRangeDisp" (dateChange)="saveDate($event)">
+          <sat-datepicker #picker [closeAfterSelection]="false" [rangeMode]="true"></sat-datepicker>
+          <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="col-md-6 color-box">
+      <h3>Descriptif du local</h3>
+      <div class="container">
+        <p class="text-for-desk">
+          Nouveau à Saint-Victoret, le centre d'affaires "Le moulin" vous propose :
+        </p>
+        <ol class="list-services">
+          <li>Ce local rénové et sécurisé d'une surface de x m² idéal pour deux collaborateurs. (deux bureaux)</li>
+          <li> Des meubles de rangements sont mis à disposition.</li>
+          <li>De nombreux services sont inclus comme le ménage, une place de parking, une télévision connectée privée, la fibre optique et une cuisine commune.</li>
+          <li>Location au mois avec un bail d'une durée de douze mois au minimum.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
