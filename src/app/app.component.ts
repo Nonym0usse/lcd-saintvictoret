@@ -10,15 +10,18 @@ export class AppComponent {
   title = 'bureaux-website';
 
   constructor() {
-    let config = {
-      apiKey: 'AIzaSyDbv3gVRFfogV1cjak_h-6nytw4l3E1qR0',
-      authDomain: 'sirop-86774.firebaseapp.com',
-      databaseURL: 'https://sirop-86774.firebaseio.com',
-      projectId: 'sirop-86774',
-      storageBucket: 'sirop-86774.appspot.com',
-      messagingSenderId: '682388243621'
+    var firebaseConfig = {
+      apiKey: "AIzaSyBUbgy2l_KvWiuEwG-dh20YcYEiu6q8sTY",
+      authDomain: "lcd-saintvic.firebaseapp.com",
+      databaseURL: "https://lcd-saintvic.firebaseio.com",
+      projectId: "lcd-saintvic",
+      storageBucket: "lcd-saintvic.appspot.com",
+      messagingSenderId: "766808734387",
+      appId: "1:766808734387:web:aba52592b87c249689cec6",
+      measurementId: "G-70WM5WZVZW"
     };
-    firebase.initializeApp(config);
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
   }
-
 }

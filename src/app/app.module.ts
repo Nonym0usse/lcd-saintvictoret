@@ -18,7 +18,11 @@ import { LcdComponent } from './lcd/lcd.component';
 import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
+import { NgxPayPalModule } from 'ngx-paypal';
 import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
 // @ts-ignore
 @NgModule({
   declarations: [
@@ -34,6 +38,7 @@ import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
   ],
   imports: [
     BrowserModule,
+    NgxPayPalModule,
     Angular2ImageGalleryModule,
     AppRoutingModule,
     MatSidenavModule,
@@ -41,15 +46,18 @@ import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
     MatNativeDateModule,
     SatDatepickerModule,
     SatNativeDateModule,
+    FormsModule,
     MatInputModule,
     BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBPV70NhMCXyhLEljZeUys0Rp_QfxED7nE'
     }),
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
