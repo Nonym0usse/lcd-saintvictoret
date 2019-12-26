@@ -22,16 +22,17 @@ export class LcdComponent implements OnInit {
   begin: string;
   end: string;
 
-  // dateRangeDisp = {'begin': string, 'end': Date};
+  myFilter = (d: Date): boolean => {
+    return !(d >= this.dateRangeDisp.begin && d <= this.dateRangeDisp.end)
+  }
 
   constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private reservation: ReservationService) { }
 
   ngOnInit() {
     this.reservation.getReservation().then(
       (reservation: Reservation) => {
-        console.log(reservation);
         // @ts-ignore
-        return this.dateRangeDisp = {begin: new Date(reservation.begin), end: new Date(reservation.end)};
+       return this.dateRangeDisp = {begin: new Date(reservation.begin), end: new Date(reservation.end)};
       }
     );
 
@@ -115,6 +116,7 @@ export class LcdComponent implements OnInit {
           const reservation2 = new Reservation();
           reservation2.begin = this.begin;
           reservation2.end = this.end;
+          reservation2.lastname = formValue.nom;
           firebase.database().ref('date-reserved').push(reservation2);
         });
       },

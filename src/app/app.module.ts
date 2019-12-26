@@ -19,7 +19,7 @@ import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import { NgxPayPalModule } from 'ngx-paypal';
-import {SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
+import {MAT_DATE_LOCALE, SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DatePipe } from '@angular/common';
 
@@ -57,6 +57,7 @@ import { DatePipe } from '@angular/common';
   ],
   providers: [
     MatDatepickerModule,
+    {provide: MAT_DATE_LOCALE, useValue: 'fr-FR'},
     DatePipe
   ],
   bootstrap: [AppComponent]

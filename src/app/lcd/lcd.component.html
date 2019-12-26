@@ -27,13 +27,12 @@
             <input formControlName="tel" type="tel" class="form-control" placeholder="Votre téléphone...">
           </div>
           <mat-form-field>
-            <input matInput placeholder="Choisir une date..." [value]="dateRangeDisp" [satDatepicker]="picker" formControlName="date" (dateChange)="saveDate($event)">
-            <sat-datepicker #picker [closeAfterSelection]="false" [rangeMode]="true"></sat-datepicker>
+            <input matInput placeholder="Choisir une date..." [matDatepickerFilter]="myFilter" [value]="dateRangeDisp" [satDatepicker]="picker" formControlName="date" (dateChange)="saveDate($event)">
+            <sat-datepicker touchUi="true" #picker  [closeAfterSelection]="false"  [selectFirstDateOnClose]="true" [rangeMode]="true"></sat-datepicker>
             <sat-datepicker-toggle matSuffix [for]="picker"></sat-datepicker-toggle>
           </mat-form-field>
           <h4>Total: {{ prix }}€</h4>
           <ngx-paypal [config]="payPalConfig" *ngIf="prix != 0"></ngx-paypal>
-          <button type="submit">Valider</button>
         </form>
       </div>
     </div>
