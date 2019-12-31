@@ -22,6 +22,21 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import {MAT_DATE_LOCALE, SatDatepickerModule, SatNativeDateModule} from 'saturn-datepicker';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+var config = {
+  apiKey: "AIzaSyBUbgy2l_KvWiuEwG-dh20YcYEiu6q8sTY",
+  authDomain: "lcd-saintvic.firebaseapp.com",
+  databaseURL: "https://lcd-saintvic.firebaseio.com",
+  projectId: "lcd-saintvic",
+  storageBucket: "lcd-saintvic.appspot.com",
+  messagingSenderId: "766808734387",
+  appId: "1:766808734387:web:aba52592b87c249689cec6",
+  measurementId: "G-70WM5WZVZW"
+};
 
 // @ts-ignore
 @NgModule({
@@ -34,9 +49,14 @@ import { DatePipe } from '@angular/common';
     Bureau4Component,
     Bureau5Component,
     Bureau6Component,
-    LcdComponent
+    LcdComponent,
+    HeaderComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule, // firestore
+    AngularFireAuthModule, // auth
+    AngularFireStorageModule,// storage
     BrowserModule,
     NgxPayPalModule,
     Angular2ImageGalleryModule,

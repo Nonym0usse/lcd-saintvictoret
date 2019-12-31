@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {IPayPalConfig, ICreateOrderRequest} from 'ngx-paypal';
 import { DatePipe } from '@angular/common';
 import {ReservationService} from './reservation.service';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 
 @Component({
@@ -21,12 +22,17 @@ export class LcdComponent implements OnInit {
   countDay: number;
   begin: string;
   end: string;
+  dateCustom = {
+    begin: '',
+    end: ''
+  };
+
 
   myFilter = (d: Date): boolean => {
     return !(d >= this.dateRangeDisp.begin && d <= this.dateRangeDisp.end)
   }
 
-  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private reservation: ReservationService) { }
+  constructor(private formBuilder: FormBuilder, private datePipe: DatePipe, private reservation: ReservationService, private db: AngularFirestore) { }
 
   ngOnInit() {
     this.reservation.getReservation().then(
@@ -44,18 +50,22 @@ export class LcdComponent implements OnInit {
       date: ''
     });
     this.prix = 0;
+    this.countDay = 0;
     this.initConfig();
   }
   saveDate(event: any) {
     const tmp = this.dateDiff(event.target.value.begin, event.target.value.end);
     if (tmp.day !== 0) {
-      this.begin = event.target.value.begin;
-      this.end = event.target.value.end;
       this.prix = tmp.day * 0.01;
+      this.countDayF(tmp.day);
       return this.prix;
     }
     this.dateRangeDisp = event.target.value;
-    return this.countDay = tmp.day;
+    return this.dateCustom = {begin: event.target.value.begin, end: event.target.value.end};
+  }
+
+  countDayF(tmp){
+    return this.countDay = tmp;
   }
 
    dateDiff(date1, date2) {
@@ -77,7 +87,7 @@ export class LcdComponent implements OnInit {
   private initConfig(): void {
     this.payPalConfig = {
       currency: 'EUR',
-      clientId: 'AVd5IHOFEVERt39jCTttnStrJZmM2a-PLqVPbPZWNhMnnpBhGTjzWJFvGL9-nD8jWqUOyyl57v6uxqSj',
+      clientId: 'AepCN8kPauhKhhRLcToXsKHw9b2v58reDUkQ6Awpv8gfbdY76DoGgfc0OGL6LBkGiHgQ9iSXZoRPbhHD',
       createOrderOnClient: (data) => <ICreateOrderRequest> {
         intent: 'CAPTURE',
         purchase_units: [{
@@ -103,21 +113,31 @@ export class LcdComponent implements OnInit {
       onApprove: (data, actions) => {
         const formValue = this.reservationGroup.value;
         actions.order.get().then(details => {
-          const reservation = new Reservation();
-          reservation.countDay = this.countDay;
-          reservation.amount = this.prix;
-          reservation.firstname = formValue.prenom;
-          reservation.lastname = formValue.nom;
-          reservation.email = formValue.email;
-          reservation.tel = formValue.tel;
-          reservation.begin = this.begin;
-          reservation.end = this.end;
-          firebase.database().ref('reservation').push(reservation);
-          const reservation2 = new Reservation();
-          reservation2.begin = this.begin;
-          reservation2.end = this.end;
-          reservation2.lastname = formValue.nom;
-          firebase.database().ref('date-reserved').push(reservation2);
+          this.db.collection('reservation').add({
+            countDay: this.countDay,
+            amount: this.prix,
+            firstname: formValue.nom,
+            lastname: formValue.prenom,
+            email: formValue.email,
+            tel: formValue.tel,
+            begin: this.dateCustom.begin,
+            end: this.dateCustom.end
+          }).catch((e) => console.log('Erreur'));
+          this.db.collection('date-reserved').add({
+            begin:  this.dateCustom.begin,
+            end: this.dateCustom.end,
+            lastname: formValue.nom
+          }).catch((e) => console.log('Erreur'));
+          this.db.collection('mail').add({
+            to: formValue.email,
+            message: {
+              subject: "Bureaux Le Moulin - Votre réservation du " + this.dateCustom.begin + " au " + this.dateCustom.end,
+              // tslint:disable-next-line:max-line-length
+              html: "Bonjour, <br> Nous tenons à vous remercier pour votre réservation. Veuillez présenter ce mail le jour de votre réservation.<br>Cordialement,<br> Joseph VELLA.",
+            }
+          }).then(
+            () => alert('Merci. Votre message à été transmis.'),
+          ).catch((e) => alert('Erreur lors de la transmission du message.'));
         });
       },
       onClientAuthorization: (data) => {
@@ -130,6 +150,7 @@ export class LcdComponent implements OnInit {
         console.log('OnError', err);
       },
       onClick: (data, actions) => {
+        const formValue = this.reservationGroup.value;
         if (this.prix !== 0) {
           return this.prix.toString();
         }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import DataSnapshot = firebase.database.DataSnapshot;
+import {AngularFirestore} from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -9,22 +10,14 @@ import DataSnapshot = firebase.database.DataSnapshot;
 export class ReservationService {
 
 
-  constructor() {
+  constructor(private db: AngularFirestore) {
 
   }
-
-
 
   getReservation() {
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('date-reserved').on("value", function(snapshot) {
-          snapshot.forEach(function(data) {
-            resolve(data.val());
-          }), (error) => {
-            reject(error);
-          };
-        });
+         resolve(this.db.collection('date-reserved').snapshotChanges());
       }
     );
   }

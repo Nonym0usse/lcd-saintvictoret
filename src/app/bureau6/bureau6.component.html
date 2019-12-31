@@ -1,5 +1,8 @@
 <div class="container-fluid image">
   <div class="gradient">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light nav-custom">
+      <a class="navbar-brand" routerLink="/"><img src="../../assets/img/logo-moulin.png" alt="logo" class="logo"></a>
+    </nav>
     <h1 class="title-bureau">TEST</h1>
     <span class="top-price">67€/mois</span>
   </div>
@@ -9,30 +12,30 @@
     <div class="col-md-6 reservation">
       <h3>Réservez dès maintenant !</h3>
       <div class="container">
-        <form class="form-horizontal">
+        <form class="form-horizontal" [formGroup]="reservationGroup" (ngSubmit)="sendEmail()">
           <div class="form-group">
             <label>Nom</label>
-            <input type="text" placeholder="Votre nom..." class="form-control">
+            <input type="text" formControlName="nom" placeholder="Votre nom..." class="form-control" required>
           </div>
           <div class="form-group">
             <label>Prénom</label>
-            <input type="text" placeholder="Votre prénom..." class="form-control">
+            <input type="text" formControlName="prenom" placeholder="Votre prénom..." class="form-control" required>
           </div>
           <div class="form-group">
             <label>Téléphone</label>
-            <input type="tel" placeholder="Votre téléphone..." class="form-control">
+            <input type="tel" formControlName="tel" placeholder="Votre téléphone..." class="form-control" required>
           </div>
           <div class="form-group">
             <label>E-mail</label>
-            <input type="email" placeholder="Votre e-mail..." class="form-control">
+            <input type="email" formControlName="email" placeholder="Votre e-mail..." class="form-control" required>
           </div>
           <div class="form-group">
             <label>Type d'activité</label>
-            <input type="text" placeholder="Votre activité..." class="form-control">
+            <input type="text" formControlName="activity" placeholder="Votre activité..." class="form-control" required>
           </div>
           <div class="form-group">
             <label>Descriptif</label>
-            <textarea placeholder="Commentaires..." class="form-control"></textarea>
+            <textarea formControlName="descriptif" placeholder="Commentaires..." class="form-control" required></textarea>
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-dark">Valider</button>
@@ -56,3 +59,101 @@
     </div>
   </div>
 </div>
+<footer class="page-footer font-small unique-color-dark">
+  <div style="background-color: #000;">
+    <div class="container">
+      <div class="row py-4 d-flex align-items-center">
+        <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+          <h6 class="mb-0">Restez en contact avec nous!</h6>
+        </div>
+        <div class="col-md-6 col-lg-7 text-center text-md-right">
+          <a class="fb-ic">
+            <i class="fab fa-facebook-f white-text mr-4"> </i>
+          </a>
+          <a class="tw-ic">
+            <i class="fab fa-twitter white-text mr-4"> </i>
+          </a>
+          <a class="gplus-ic">
+            <i class="fab fa-google-plus-g white-text mr-4"> </i>
+          </a>
+          <a class="li-ic">
+            <i class="fab fa-linkedin-in white-text mr-4"> </i>
+          </a>
+          <a class="ins-ic">
+            <i class="fab fa-instagram white-text"> </i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="container text-center text-md-left mt-5">
+    <div class="row mt-3">
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+        <h6 class="text-uppercase font-weight-bold">Le moulin</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>Centre d'affaires Le moulin, des bureaux sur-équipés à louer sur Saint-Victoret.</p>
+      </div>
+
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+        <h6 class="text-uppercase font-weight-bold">Louer</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a routerLink="/bureau1" style="color: #F6C931">Bureau 1</a>
+        </p>
+        <p>
+          <a routerLink="/bureau2" style="color: #F6C931">Bureau 2</a>
+        </p>
+        <p>
+          <a routerLink="/bureau3" style="color: #F6C931">Bureau 3</a>
+        </p>
+        <p>
+          <a routerLink="/bureau4" style="color: #F6C931">Bureau 4</a>
+        </p>
+        <p>
+          <a routerLink="/bureau5" style="color: #F6C931">Bureau 5</a>
+        </p>
+        <p>
+          <a routerLink="/bureau6" style="color: #F6C931">Bureau 6</a>
+        </p>
+        <p>
+          <a routerLink="/louer-courte-duree" style="color: #F6C931">Bureau à la journée</a>
+        </p>
+      </div>
+
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <h6 class="text-uppercase font-weight-bold">a propos</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <a routerLink="#" style="color: #F6C931">Mentions légales</a>
+        </p>
+        <p>
+          <a style="color: #F6C931" href="https://www.vella.fr" title="Agence immobilière joseph vella immobilier" target="_blank">Qui sommes-nous?</a>
+        </p>
+        <p>
+          <a style="color: #F6C931" href="#">Plan du site</a>
+        </p>
+        <p>
+          <a style="color: #F6C931" href="https://www.facebook.com/josephvellaimmobilier/">Réseaux sociaux</a>
+        </p>
+      </div>
+
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+        <p>
+          <i class="fas fa-home mr-3"></i> 945 Boulevard Abbadie, Saint-Victoret, 13.</p>
+        <p>
+          <i class="fas fa-envelope mr-3"></i> vellaimmo@gmail.com</p>
+        <p>
+          <i class="fas fa-phone mr-3"></i> 06 70 68 17 74</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://microvella.com" style="color: #F6C931"> Cyril VELLA - Microvella</a>
+  </div>
+</footer>

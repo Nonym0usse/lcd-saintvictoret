@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Kalam&display=swap');
+
 .image{
   height: 100vh;
   background-image: url("../../assets/img/fake-coworking.jpg");
@@ -5,6 +7,26 @@
   background-size: cover;
   padding-left: 0px !important;
   padding-right: 0px !important;
+}
+
+.navbar-nav{
+  float: right !important;
+}
+
+.navbar-nav{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  float: none;
+}
+
+.nav-custom{
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.logo{
+  width: 300px;
+  height: 120px;
 }
 
 .gradient{
@@ -48,27 +70,28 @@
   letter-spacing: -0.01em;
 }
 
-.descriptif{
-  height: 75vh;
-}
 
 .reservation{
-  background-color: #F6C931;
-  height: 75vh;
+  background-color: #FFF;
+  height: 100%;
 }
 
 .reservation h3{
+  font-family: 'Kalam', cursive !important;
   text-align: center;
-  color: #fff;
+  color: #000;
   padding-top: 30px;
 }
 
 .color-box{
   background-color: #1B1B1B;
-  height: 75vh;
+  height: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 
 .color-box h3{
+  font-family: 'Kalam', cursive !important;
   text-align: center;
   color: #fff;
   padding-top: 30px;
@@ -86,4 +109,60 @@
 
 .list-services li{
   padding: 10px;
+}
+
+.unique-color-dark{
+  background-color: black;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .logo{
+    display: block;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  .reservation{
+    height: auto;
+  }
+  .descriptif{
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 468px) {
+  .logo{
+    display: block;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  .title-bureau{
+    top: 150px;
+  }
+  .reservation{
+    height: auto;
+  }
+  .descriptif{
+    height: auto;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1600px) {
+  .title-bureau{
+    top: 100px;
+  }
+  .logo{
+    display: block;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+  }
+  .reservation{
+    height: auto;
+  }
+  .descriptif{
+    height: auto;
+  }
 }
